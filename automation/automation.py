@@ -42,22 +42,22 @@ for i in range(100):
 with open("potential-contacts.txt", "w+") as f:
     f.write(potential_contacts)
 
-shutil.copy('potential-contacts.txt', '../assets/potential-contacts.txt') 
+shutil.copy('potential-contacts.txt', 'assets/potential-contacts.txt') 
 
 # for stretch goal
 with open("existing-contacts.txt", "w+") as f:
     f.write(existing_contacts)
 
-shutil.copy('existing-contacts.txt', '../assets/existing-contacts.txt')
+shutil.copy('existing-contacts.txt', 'assets/existing-contacts.txt')
 
 
 with open('potential-contacts.txt', 'r') as file:
     text = file.read().replace('\n', '')
 
 phoneRegex = re.compile(r'''(
-    (\d{3}|\(\d{3}\))? 
+    (\d{3}|\(\d{3}\))?
     (\s|-|\.)? 
-    (\d{3}) 
+    (\d{3})
     (\s|-|\.)
     (\d{4}) 
     (\s*(ext|x|ext.)\s*(\d{2,5}))? 
@@ -74,10 +74,10 @@ emailRegex = re.compile(r'''(
 matches_phones = []
 matches_emails = []
 
-for groups in phoneRegex.findall(text):
+for groups in phoneRegex.findall(text): 
     phoneNum = '-'.join([groups[1], groups[3], groups[5]])
-    phoneNum = re.sub(r'[(|)]', '', phoneNum)
-    if phoneNum not in matches_phones:
+    phoneNum = re.sub(r'[(|)]', '', phoneNum) 
+    if phoneNum not in matches_phones: 
         matches_phones.append(phoneNum)
 for groups in emailRegex.findall(text):
     if groups[0] not in matches_emails:
